@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { prisma } from '@/lib/prisma';
 import { ShoppingCart, IndianRupee, TrendingUp, PackageCheck, ArrowUpRight, Truck, Phone } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 export default async function AdminDashboard() {
   const orders = await prisma.order.findMany({
     orderBy: { createdAt: 'desc' },

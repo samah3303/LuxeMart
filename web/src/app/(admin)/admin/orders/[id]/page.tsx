@@ -4,6 +4,8 @@ import { getOrderById } from '@/actions/orderActions';
 import { FulfillmentForm } from '@/components/admin/FulfillmentForm';
 import { ArrowLeft, MessageCircle, MapPin, ExternalLink } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 export default async function AdminOrderDetailPage({
   params,
 }: {

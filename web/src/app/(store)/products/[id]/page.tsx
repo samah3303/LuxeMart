@@ -4,6 +4,8 @@ import { getProductById } from '@/actions/productActions';
 import { AddToCartButton } from '@/components/AddToCartButton';
 import { ArrowLeft, Star, Truck, ShieldCheck, Banknote, Sparkles, CheckCircle2, MessageCircle } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 export default async function ProductDetailPage({
   params,
 }: {

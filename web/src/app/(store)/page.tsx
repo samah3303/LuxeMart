@@ -4,6 +4,8 @@ import { getProducts } from '@/actions/productActions';
 import { AddToCartButton } from '@/components/AddToCartButton';
 import { Truck, ShieldCheck, Banknote, RefreshCw, Star, ArrowRight, Sparkles, Award } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 export default async function HomePage() {
   const { products } = await getProducts();
 

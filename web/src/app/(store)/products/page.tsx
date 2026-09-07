@@ -4,6 +4,8 @@ import { getProducts } from '@/actions/productActions';
 import { AddToCartButton } from '@/components/AddToCartButton';
 import { Star, ArrowLeft } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 export default async function ProductsPage() {
   const { products } = await getProducts();
 
