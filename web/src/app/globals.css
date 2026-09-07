@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: #faf8f5;
+    --foreground: #090d16;
+    --card: #ffffff;
+    --card-foreground: #090d16;
+    --primary: #090d16;
+    --primary-foreground: #faf8f5;
+    --accent-gold: #b45309;
+    --accent-gold-light: #fef3c7;
+    --accent-emerald: #047857;
+    --accent-emerald-light: #ecfdf5;
+    --muted: #f4efe6;
+    --muted-foreground: #64748b;
+    --border: #e8e3d9;
+  }
+
+  html, body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display), var(--font-serif), Georgia, serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Luxury card and glass utility classes */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(232, 227, 217, 0.8);
+}
+
+.glass-dock {
+  background: rgba(9, 13, 22, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.luxury-card {
+  background: #ffffff;
+  border: 1px solid #eee9df;
+  box-shadow: 0 4px 20px -2px rgba(9, 13, 22, 0.03), 0 2px 6px -1px rgba(9, 13, 22, 0.02);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px -4px rgba(9, 13, 22, 0.08), 0 4px 12px -2px rgba(9, 13, 22, 0.04);
+  border-color: #dfd8cc;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #faf8f5;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}

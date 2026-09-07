@@ -1,4 +1,4 @@
-# LuxeMart E-commerce Project
+# Goodfinds E-commerce Platform
 
 ## Getting Started
 

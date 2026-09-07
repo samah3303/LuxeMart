@@ -2,7 +2,7 @@
 
 ## 1. Project Overview
 
-This project is a full-stack e-commerce solution named **"LuxeMart"**. It includes a responsive Web Storefront, a dedicated Admin Panel, and a cross-platform Mobile App (Android/iOS).
+This project is a full-stack e-commerce solution named **"Goodfinds"**. It includes a responsive Web Storefront, a dedicated Admin Panel, and a cross-platform Mobile App (Android/iOS).
 
 ### **Target Platforms**
 

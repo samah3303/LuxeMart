@@ -1,0 +1,81 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  role      String   @default("USER") // ADMIN, USER
+  orders    Order[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Product {
+  id           String      @id @default(cuid())
+  name         String
+  description  String
+  price        Decimal
+  costPrice    Decimal     @default(0)
+  supplierName String      @default("Direct Supplier")
+  supplierUrl  String?
+  image        String
+  category     Category    @relation(fields: [categoryId], references: [id])
+  categoryId   String
+  stock        Int         @default(0)
+  orderItems   OrderItem[]
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+}
+
+model Category {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  products  Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Order {
+  id                 String      @id @default(cuid())
+  user               User?       @relation(fields: [userId], references: [id])
+  userId             String?
+  customerName       String?
+  customerEmail      String?
+  customerPhone      String?
+  houseName          String?
+  streetAddress      String?
+  landmark           String?
+  city               String?
+  district           String?
+  state              String?
+  pincode            String?
+  paymentMethod      String      @default("COD") // COD, UPI, CARD
+  paymentStatus      String      @default("PENDING") // PENDING, PAID, REFUNDED
+  prepaidDiscount    Decimal     @default(0)
+  supplierOrderId    String?
+  courierName        String?
+  trackingNumber     String?
+  fulfillmentStatus  String      @default("PENDING_SUPPLIER") // PENDING_SUPPLIER, ORDERED_AT_SUPPLIER, SHIPPED, DELIVERED, RTO
+  status             String      @default("PENDING") // PENDING, COMPLETED, CANCELLED
+  total              Decimal
+  items              OrderItem[]
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  order     Order   @relation(fields: [orderId], references: [id])
+  orderId   String
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
+  quantity  Int
+  price     Decimal
+}
