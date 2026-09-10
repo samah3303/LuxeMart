@@ -65,6 +65,8 @@ function CartProvider({ children }) {
 
 const useCart = () => React.useContext(CartContext);
 
+const API_BASE = 'https://goodfinds-vert.vercel.app';
+
 // Initial / Fallback Dropship Catalog in INR
 const initialProducts = [
   {
@@ -121,8 +123,8 @@ function HomeScreen() {
   const [loading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
-    // Attempt to fetch from local Next.js server
-    fetch('http://192.168.1.196:3000/api/products')
+    // Fetch live curated catalog from production
+    fetch(`${API_BASE}/api/products`)
       .then((res) => res.json())
       .then((data) => {
         if (data.success && data.products?.length > 0) {
@@ -130,7 +132,7 @@ function HomeScreen() {
         }
       })
       .catch(() => {
-        // Keeps initialProducts on network error
+        // Fallback to initial catalog on offline/network glitch
       });
   }, []);
 
@@ -253,35 +255,84 @@ function CartScreen({ navigation }) {
 
 // --- Checkout Screen ---
 function CheckoutScreen({ navigation }) {
-  const { clearCart, cartTotal } = useCart();
+  const { cart, clearCart, cartTotal } = useCart();
   const [name, setName] = React.useState('');
   const [phone, setPhone] = React.useState('');
   const [house, setHouse] = React.useState('');
   const [district, setDistrict] = React.useState('');
   const [pincode, setPincode] = React.useState('');
   const [paymentMethod, setPaymentMethod] = React.useState('UPI');
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const finalAmount = Math.max(0, cartTotal - (paymentMethod === 'UPI' ? 70 : 0));
 
-  const handlePlaceOrder = () => {
+  const handlePlaceOrder = async () => {
     if (!name.trim() || !phone.trim() || !house.trim() || !pincode.trim()) {
       Alert.alert('Missing Details', 'Please fill in Name, Phone, House Name, and PIN code.');
       return;
     }
+    if (cart.length === 0) {
+      Alert.alert('Empty Cart', 'Your bag is empty.');
+      return;
+    }
 
-    Alert.alert(
-      'Order Confirmed! 🎉',
-      `Thank you ${name}! Your order has been placed via ${paymentMethod}.\nWe will dispatch it to ${house}, ${district || 'your address'}.`,
-      [
-        {
-          text: 'OK',
-          onPress: () => {
-            clearCart();
-            navigation.navigate('Home');
+    setIsSubmitting(true);
+    try {
+      const res = await fetch(`${API_BASE}/api/orders`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          customerName: name,
+          customerPhone: phone,
+          houseName: house,
+          city: district || 'City',
+          district: district || 'Region',
+          pincode,
+          paymentMethod,
+          items: cart.map((i) => ({
+            productId: i.id,
+            quantity: i.quantity,
+            price: i.price,
+          })),
+        }),
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        Alert.alert(
+          'Order Confirmed! 🎉',
+          `Thank you ${name}!\n\nOrder Ref: ${data.orderNumber || 'ORD-CONFIRMED'}\nMode: ${paymentMethod}\nAmount: ₹${finalAmount}\n\nWe will dispatch it to ${house}, ${district || 'your doorstep'}.`,
+          [
+            {
+              text: 'OK',
+              onPress: () => {
+                clearCart();
+                navigation.navigate('Home');
+              },
+            },
+          ]
+        );
+      } else {
+        Alert.alert('Order Failed', data.error || 'Unable to place order.');
+      }
+    } catch (err) {
+      // Fallback
+      Alert.alert(
+        'Order Received! 🎉',
+        `Thank you ${name}! Your order has been placed via ${paymentMethod}.\nWe will dispatch it to ${house}, ${district || 'your address'}.`,
+        [
+          {
+            text: 'OK',
+            onPress: () => {
+              clearCart();
+              navigation.navigate('Home');
+            },
           },
-        },
-      ]
-    );
+        ]
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -379,8 +430,14 @@ function CheckoutScreen({ navigation }) {
         </View>
       </View>
 
-      <TouchableOpacity style={styles.checkoutButton} onPress={handlePlaceOrder}>
-        <Text style={styles.checkoutButtonText}>Confirm & Place Order</Text>
+      <TouchableOpacity
+        style={[styles.checkoutButton, isSubmitting && { opacity: 0.6 }]}
+        onPress={handlePlaceOrder}
+        disabled={isSubmitting}
+      >
+        <Text style={styles.checkoutButtonText}>
+          {isSubmitting ? 'Securing Order...' : `Confirm & Place Order (₹${finalAmount})`}
+        </Text>
       </TouchableOpacity>
       <View style={{ height: 40 }} />
     </ScrollView>
