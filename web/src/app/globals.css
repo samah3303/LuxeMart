@@ -1,25 +1,65 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: #faf8f5;
-    --foreground: #090d16;
-    --card: #ffffff;
-    --card-foreground: #090d16;
-    --primary: #090d16;
-    --primary-foreground: #faf8f5;
-    --accent-gold: #b45309;
-    --accent-gold-light: #fef3c7;
-    --accent-emerald: #047857;
-    --accent-emerald-light: #ecfdf5;
-    --muted: #f4efe6;
-    --muted-foreground: #64748b;
-    --border: #e8e3d9;
-  }
+:root {
+  /* Backgrounds */
+  --paper: #f5f6f1;       /* Warm off-white main background */
+  --white: #ffffff;       /* Pure white for cards/panels */
+  
+  /* Text & Borders */
+  --ink: #182018;         /* Very dark green-black for primary text */
+  --muted: #687068;       /* Desaturated grey-green for secondary text */
+  --line: #dfe3dd;        /* Light grey-green for borders/dividers */
+  
+  /* Accents & Brand Colors */
+  --forest: #183d2f;      /* Deep forest green (Primary action buttons/headers) */
+  --mint: #baf2cd;        /* Bright mint green (Highlights, brand logo bg) */
+  --mint-deep: #2f7a54;   /* Mid-tone green */
+  --coral: #ff745e;       /* Soft red/coral for alerts or staff tracking lines */
+  --violet: #e5ddff;      /* Subtle violet accent */
+  
+  /* UI Elements */
+  --shadow: 0 18px 50px rgba(31, 49, 39, 0.08); /* Soft, tinted drop shadow */
+  --radius: 20px;         /* Standard border-radius for cards */
 
+  /* Dark Sidebar Palette */
+  --sidebar-bg: #102c23;
+  --sidebar-inactive: #aebfb7;
+  --sidebar-active-text: #ffffff;
+  --sidebar-hover-bg: rgba(255, 255, 255, 0.09);
+  --sidebar-muted: #9db4aa;
+
+  /* Status Dots */
+  --status-green: #74dc98;
+  --status-yellow: #d7a14b;
+  --status-red: #9c4337;
+
+  /* System Mappings */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--white);
+  --card-foreground: var(--ink);
+  --primary: var(--forest);
+  --primary-foreground: #ffffff;
+  --border: var(--line);
+}
+
+@theme {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-forest: var(--forest);
+  --color-mint: var(--mint);
+  --color-mint-deep: var(--mint-deep);
+  --color-coral: var(--coral);
+  --color-violet: var(--violet);
+  --color-sidebar: var(--sidebar-bg);
+}
+
+@layer base {
   html, body {
-    background-color: var(--background);
-    color: var(--foreground);
+    background-color: var(--paper);
+    color: var(--ink);
     font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -35,30 +75,30 @@
 
 /* Luxury card and glass utility classes */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(232, 227, 217, 0.8);
+  border: 1px solid var(--line);
 }
 
 .glass-dock {
-  background: rgba(9, 13, 22, 0.92);
+  background: rgba(16, 44, 35, 0.94);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .luxury-card {
-  background: #ffffff;
-  border: 1px solid #eee9df;
-  box-shadow: 0 4px 20px -2px rgba(9, 13, 22, 0.03), 0 2px 6px -1px rgba(9, 13, 22, 0.02);
+  background: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 20px -2px rgba(24, 61, 47, 0.05), 0 2px 6px -1px rgba(24, 61, 47, 0.03);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .luxury-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 32px -4px rgba(9, 13, 22, 0.08), 0 4px 12px -2px rgba(9, 13, 22, 0.04);
-  border-color: #dfd8cc;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: rgba(47, 122, 84, 0.3);
 }
 
 /* Custom scrollbar */
@@ -67,12 +107,12 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #faf8f5;
+  background: var(--paper);
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #dfe3dd;
   border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #aebfb7;
 }

@@ -60,21 +60,21 @@ export function FulfillmentForm({ orderId, initialData, addressText }: Fulfillme
   return (
     <div className="space-y-6">
       {/* 1-Click Copy Address for Supplier */}
-      <div className="bg-[#090d16] p-5 sm:p-6 rounded-3xl text-[#faf8f5] shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border border-white/10">
+      <div className="bg-[#102c23] p-5 sm:p-6 rounded-3xl text-white shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border border-white/10">
         <div>
-          <span className="text-[10px] font-extrabold text-amber-300 uppercase tracking-widest block">
+          <span className="text-[10px] font-extrabold text-[#baf2cd] uppercase tracking-widest block">
             Dropship Dispatch Action
           </span>
           <h4 className="font-display font-bold text-sm sm:text-base text-white mt-0.5">
             1-Click Copy Formatted Address
           </h4>
-          <p className="text-slate-400 text-xs mt-0.5 font-light">
+          <p className="text-[#aebfb7] text-xs mt-0.5 font-light">
             Formatted specifically for Roposo Clout, GlowRoad, or Meesho order placement.
           </p>
         </div>
         <button
           onClick={handleCopyAddress}
-          className="w-full sm:w-auto bg-amber-400 hover:bg-amber-300 text-slate-950 font-black px-5 py-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition shadow-sm active:scale-95 cursor-pointer"
+          className="w-full sm:w-auto bg-[#baf2cd] hover:bg-[#a6e6bc] text-[#102c23] font-black px-5 py-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition shadow-sm active:scale-95 cursor-pointer"
         >
           {copied ? (
             <>
@@ -91,14 +91,14 @@ export function FulfillmentForm({ orderId, initialData, addressText }: Fulfillme
       </div>
 
       {/* Fulfillment Status Form */}
-      <form onSubmit={handleSave} className="bg-white p-5 sm:p-8 rounded-3xl border border-[#eee9df] shadow-xs space-y-5">
-        <div className="flex items-center justify-between border-b border-[#eee9df] pb-3">
-          <h3 className="font-display font-bold text-[#090d16] text-base flex items-center gap-2">
-            <Truck size={18} className="text-amber-800" />
+      <form onSubmit={handleSave} className="bg-white p-5 sm:p-8 rounded-3xl border border-[#dfe3dd] shadow-xs space-y-5">
+        <div className="flex items-center justify-between border-b border-[#dfe3dd] pb-3">
+          <h3 className="font-display font-bold text-[#182018] text-base flex items-center gap-2">
+            <Truck size={18} className="text-[#183d2f]" />
             <span>Fulfillment & Dispatch Controls</span>
           </h3>
           {saveSuccess && (
-            <span className="text-xs font-bold text-emerald-700 flex items-center gap-1">
+            <span className="text-xs font-bold text-[#2f7a54] flex items-center gap-1">
               <Check size={14} /> Saved Successfully
             </span>
           )}
@@ -106,7 +106,7 @@ export function FulfillmentForm({ orderId, initialData, addressText }: Fulfillme
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
           <div>
-            <label className="block font-bold text-slate-700 mb-1.5">
+            <label className="block font-bold text-[#182018] mb-1.5">
               Supplier Order Reference ID
             </label>
             <input
@@ -114,18 +114,18 @@ export function FulfillmentForm({ orderId, initialData, addressText }: Fulfillme
               value={formData.supplierOrderId}
               onChange={(e) => setFormData({ ...formData, supplierOrderId: e.target.value })}
               placeholder="e.g. ROP-102938 / GLOW-4491"
-              className="w-full border border-[#e8e3d9] bg-[#faf8f5] rounded-xl px-3.5 py-2.5 focus:bg-white focus:border-amber-700 focus:outline-none font-mono"
+              className="w-full border border-[#dfe3dd] bg-[#f5f6f1] text-[#182018] rounded-xl px-3.5 py-2.5 focus:bg-white focus:border-[#2f7a54] focus:outline-none font-mono"
             />
           </div>
 
           <div>
-            <label className="block font-bold text-slate-700 mb-1.5">
+            <label className="block font-bold text-[#182018] mb-1.5">
               Fulfillment Workflow Stage
             </label>
             <select
               value={formData.fulfillmentStatus}
               onChange={(e) => setFormData({ ...formData, fulfillmentStatus: e.target.value })}
-              className="w-full border border-[#e8e3d9] bg-[#faf8f5] rounded-xl px-3 py-2.5 focus:bg-white focus:border-amber-700 focus:outline-none font-semibold text-slate-800"
+              className="w-full border border-[#dfe3dd] bg-[#f5f6f1] text-[#182018] rounded-xl px-3 py-2.5 focus:bg-white focus:border-[#2f7a54] focus:outline-none font-semibold"
             >
               <option value="PENDING_SUPPLIER">PENDING SUPPLIER (Need to place order)</option>
               <option value="ORDERED_AT_SUPPLIER">ORDERED AT SUPPLIER (Placed with wholesaler)</option>
@@ -136,13 +136,13 @@ export function FulfillmentForm({ orderId, initialData, addressText }: Fulfillme
           </div>
 
           <div>
-            <label className="block font-bold text-slate-700 mb-1.5">
+            <label className="block font-bold text-[#182018] mb-1.5">
               Courier Aggregator / Partner
             </label>
             <select
               value={formData.courierName}
               onChange={(e) => setFormData({ ...formData, courierName: e.target.value })}
-              className="w-full border border-[#e8e3d9] bg-[#faf8f5] rounded-xl px-3 py-2.5 focus:bg-white focus:border-amber-700 focus:outline-none"
+              className="w-full border border-[#dfe3dd] bg-[#f5f6f1] text-[#182018] rounded-xl px-3 py-2.5 focus:bg-white focus:border-[#2f7a54] focus:outline-none"
             >
               <option value="Shiprocket (Delhivery)">Shiprocket (Delhivery)</option>
               <option value="Shiprocket (Bluedart)">Shiprocket (Bluedart)</option>
@@ -154,7 +154,7 @@ export function FulfillmentForm({ orderId, initialData, addressText }: Fulfillme
           </div>
 
           <div>
-            <label className="block font-bold text-slate-700 mb-1.5">
+            <label className="block font-bold text-[#182018] mb-1.5">
               Air Waybill / Tracking Number (AWB)
             </label>
             <input
@@ -162,18 +162,18 @@ export function FulfillmentForm({ orderId, initialData, addressText }: Fulfillme
               value={formData.trackingNumber}
               onChange={(e) => setFormData({ ...formData, trackingNumber: e.target.value })}
               placeholder="e.g. 143284918239"
-              className="w-full border border-[#e8e3d9] bg-[#faf8f5] rounded-xl px-3.5 py-2.5 focus:bg-white focus:border-amber-700 focus:outline-none font-mono"
+              className="w-full border border-[#dfe3dd] bg-[#f5f6f1] text-[#182018] rounded-xl px-3.5 py-2.5 focus:bg-white focus:border-[#2f7a54] focus:outline-none font-mono"
             />
           </div>
 
           <div>
-            <label className="block font-bold text-slate-700 mb-1.5">
+            <label className="block font-bold text-[#182018] mb-1.5">
               Payment Settlement Status
             </label>
             <select
               value={formData.paymentStatus}
               onChange={(e) => setFormData({ ...formData, paymentStatus: e.target.value })}
-              className="w-full border border-[#e8e3d9] bg-[#faf8f5] rounded-xl px-3 py-2.5 focus:bg-white focus:border-amber-700 focus:outline-none"
+              className="w-full border border-[#dfe3dd] bg-[#f5f6f1] text-[#182018] rounded-xl px-3 py-2.5 focus:bg-white focus:border-[#2f7a54] focus:outline-none"
             >
               <option value="PAID">PAID (Prepaid UPI or Courier Remitted)</option>
               <option value="PENDING">PENDING (Awaiting Doorstep Cash Collection)</option>
@@ -186,7 +186,7 @@ export function FulfillmentForm({ orderId, initialData, addressText }: Fulfillme
           <button
             type="submit"
             disabled={saving}
-            className="w-full sm:w-auto bg-[#090d16] hover:bg-slate-800 text-[#faf8f5] font-extrabold text-xs px-6 py-3 rounded-xl transition shadow-md flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full sm:w-auto bg-[#183d2f] hover:bg-[#102c23] text-white font-extrabold text-xs px-6 py-3 rounded-xl transition shadow-md flex items-center justify-center gap-2 cursor-pointer"
           >
             <Save size={16} />
             <span>{saving ? 'Updating...' : 'Save Fulfillment Changes'}</span>

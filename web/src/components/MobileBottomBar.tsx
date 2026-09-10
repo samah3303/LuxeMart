@@ -34,14 +34,14 @@ export function MobileBottomBar() {
               href={item.href}
               className={`relative flex flex-col items-center py-1 px-2.5 rounded-lg transition-all ${
                 isActive
-                  ? 'text-amber-400 bg-white/10'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'text-[#baf2cd] bg-white/10'
+                  : 'text-[#aebfb7] hover:text-white'
               }`}
             >
               <div className="relative">
                 <Icon size={18} />
                 {item.badge !== undefined && item.badge > 0 && (
-                  <span className="absolute -top-1.5 -right-2 bg-emerald-500 text-slate-950 text-[9px] font-black rounded-full min-w-3.5 h-3.5 px-0.5 flex items-center justify-center animate-pulse">
+                  <span className="absolute -top-1.5 -right-2 bg-[#baf2cd] text-[#183d2f] text-[9px] font-black rounded-full min-w-3.5 h-3.5 px-0.5 flex items-center justify-center animate-pulse">
                     {item.badge}
                   </span>
                 )}
@@ -56,7 +56,7 @@ export function MobileBottomBar() {
           href="https://wa.me/919999999999?text=Hi%20Goodfinds,%20I%20have%20an%20inquiry%20regarding%20products."
           target="_blank"
           rel="noopener noreferrer"
-          className="flex flex-col items-center py-1 px-2.5 text-emerald-400 hover:text-emerald-300 transition-all"
+          className="flex flex-col items-center py-1 px-2.5 text-[#74dc98] hover:text-[#baf2cd] transition-all"
         >
           <MessageCircle size={18} />
           <span className="text-[9px] font-bold tracking-tight mt-0.5">Support</span>

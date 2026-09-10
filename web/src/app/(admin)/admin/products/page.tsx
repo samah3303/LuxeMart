@@ -19,31 +19,31 @@ export default async function AdminProductsPage() {
         <div>
           <Link
             href="/admin"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-slate-900 mb-1 transition"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#687068] hover:text-[#182018] mb-1 transition"
           >
             <ArrowLeft size={14} />
             <span>Back to Dashboard</span>
           </Link>
-          <h2 className="font-display text-xl sm:text-2xl font-black text-[#090d16] tracking-tight">
+          <h2 className="font-display text-xl sm:text-2xl font-black text-[#182018] tracking-tight">
             Products & Sourcing Catalog
           </h2>
-          <p className="text-slate-500 text-xs mt-0.5">
+          <p className="text-[#687068] text-xs mt-0.5">
             Manage wholesale supplier costs and retail profit margins
           </p>
         </div>
 
         <Link
           href="/admin/products/new"
-          className="bg-[#090d16] hover:bg-slate-800 text-[#faf8f5] font-bold text-xs px-3.5 py-2 rounded-lg transition shadow-2xs flex items-center gap-1.5 w-fit"
+          className="bg-[#183d2f] hover:bg-[#102c23] text-white font-bold text-xs px-3.5 py-2 rounded-xl transition shadow-xs flex items-center gap-1.5 w-fit"
         >
           <Plus size={14} />
           <span>Add Dropship Product</span>
         </Link>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-2xs border border-[#eee9df] overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-xs border border-[#dfe3dd] overflow-hidden">
         {/* Mobile View: Product Cards */}
-        <div className="sm:hidden divide-y divide-[#eee9df]">
+        <div className="sm:hidden divide-y divide-[#dfe3dd]">
           {products.map((product) => {
             const retail = Number(product.price);
             const cost = Number(product.costPrice || 0);
@@ -55,15 +55,15 @@ export default async function AdminProductsPage() {
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-14 h-14 rounded-lg object-cover border border-[#eee9df] flex-shrink-0"
+                  className="w-14 h-14 rounded-lg object-cover border border-[#dfe3dd] flex-shrink-0"
                 />
                 <div className="flex-1 min-w-0">
-                  <h4 className="font-bold text-xs text-[#090d16] truncate">{product.name}</h4>
-                  <p className="text-[10px] text-slate-500 mt-0.5">Supplier: {product.supplierName}</p>
+                  <h4 className="font-bold text-xs text-[#182018] truncate">{product.name}</h4>
+                  <p className="text-[10px] text-[#687068] mt-0.5">Supplier: {product.supplierName}</p>
                   <div className="flex items-center gap-2 mt-1 text-xs">
-                    <span className="font-black text-slate-900">₹{retail}</span>
-                    <span className="text-[9px] text-slate-400 font-mono">(Cost: ₹{cost})</span>
-                    <span className="text-[9px] font-bold text-emerald-700 bg-emerald-50 px-1 py-0.2 rounded ml-auto">
+                    <span className="font-black text-[#182018]">₹{retail}</span>
+                    <span className="text-[9px] text-[#687068] font-mono">(Cost: ₹{cost})</span>
+                    <span className="text-[9px] font-bold text-[#183d2f] bg-[#baf2cd] px-1.5 py-0.5 rounded ml-auto border border-[#2f7a54]/20">
                       +{marginPercent}%
                     </span>
                   </div>
@@ -75,8 +75,8 @@ export default async function AdminProductsPage() {
 
         {/* Desktop View: Full Data Table */}
         <div className="hidden sm:block overflow-x-auto">
-          <table className="w-full text-left text-xs text-slate-600">
-            <thead className="bg-[#faf8f5] text-slate-700 font-bold uppercase tracking-wider text-[9px] border-b border-[#eee9df]">
+          <table className="w-full text-left text-xs text-[#687068]">
+            <thead className="bg-[#f5f6f1] text-[#182018] font-bold uppercase tracking-wider text-[9px] border-b border-[#dfe3dd]">
               <tr>
                 <th className="px-3.5 py-2.5">Product</th>
                 <th className="px-3.5 py-2.5">Category</th>
@@ -87,7 +87,7 @@ export default async function AdminProductsPage() {
                 <th className="px-3.5 py-2.5 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#eee9df]">
+            <tbody className="divide-y divide-[#dfe3dd]">
               {products.map((product) => {
                 const retail = Number(product.price);
                 const cost = Number(product.costPrice || 0);
@@ -95,46 +95,46 @@ export default async function AdminProductsPage() {
                 const marginPercent = retail > 0 ? Math.round((margin / retail) * 100) : 0;
 
                 return (
-                  <tr key={product.id} className="hover:bg-[#faf8f5] transition">
+                  <tr key={product.id} className="hover:bg-[#f5f6f1]/60 transition">
                     <td className="px-3.5 py-2.5">
                       <div className="flex items-center gap-2.5">
                         <img
                           src={product.image}
                           alt={product.name}
-                          className="w-10 h-10 rounded-lg object-cover border border-[#eee9df] flex-shrink-0"
+                          className="w-10 h-10 rounded-lg object-cover border border-[#dfe3dd] flex-shrink-0"
                         />
                         <div className="min-w-0">
-                          <span className="font-bold text-[#090d16] block truncate max-w-xs text-xs">
+                          <span className="font-bold text-[#182018] block truncate max-w-xs text-xs">
                             {product.name}
                           </span>
-                          <span className="text-[10px] text-slate-400">Stock: {product.stock} units</span>
+                          <span className="text-[10px] text-[#687068]">Stock: {product.stock} units</span>
                         </div>
                       </div>
                     </td>
 
-                    <td className="px-3.5 py-2.5 font-semibold text-slate-700 text-xs">
+                    <td className="px-3.5 py-2.5 font-semibold text-[#182018] text-xs">
                       {product.category?.name || 'General'}
                     </td>
 
-                    <td className="px-3.5 py-2.5 font-black text-[#090d16] text-xs">
+                    <td className="px-3.5 py-2.5 font-black text-[#182018] text-xs">
                       ₹{retail}
                     </td>
 
-                    <td className="px-3.5 py-2.5 font-mono text-slate-600 text-xs">
+                    <td className="px-3.5 py-2.5 font-mono text-[#687068] text-xs">
                       ₹{cost}
                     </td>
 
                     <td className="px-3.5 py-2.5">
-                      <span className="font-black text-emerald-700 block text-xs">
+                      <span className="font-black text-[#2f7a54] block text-xs">
                         ₹{margin}
                       </span>
-                      <span className="text-[9px] font-bold text-emerald-800 bg-emerald-50 px-1.5 py-0.5 rounded">
+                      <span className="text-[9px] font-bold text-[#183d2f] bg-[#baf2cd] px-1.5 py-0.5 rounded border border-[#2f7a54]/20">
                         {marginPercent}% Margin
                       </span>
                     </td>
 
                     <td className="px-3.5 py-2.5">
-                      <span className="font-semibold text-slate-800 block text-xs">
+                      <span className="font-semibold text-[#182018] block text-xs">
                         {product.supplierName}
                       </span>
                       {product.supplierUrl && (
@@ -142,7 +142,7 @@ export default async function AdminProductsPage() {
                           href={product.supplierUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-[10px] text-amber-800 hover:underline flex items-center gap-1 mt-0.5 font-medium"
+                          className="text-[10px] text-[#183d2f] hover:underline flex items-center gap-1 mt-0.5 font-medium"
                         >
                           <span>Portal</span>
                           <ExternalLink size={9} />
@@ -154,7 +154,7 @@ export default async function AdminProductsPage() {
                       <Link
                         href={`/products/${product.id}`}
                         target="_blank"
-                        className="inline-flex items-center gap-1 text-slate-700 hover:text-[#090d16] font-bold text-xs"
+                        className="inline-flex items-center gap-1 text-[#687068] hover:text-[#182018] font-bold text-xs"
                       >
                         <span>Storefront</span>
                         <ExternalLink size={11} />

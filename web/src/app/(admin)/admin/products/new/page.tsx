@@ -74,20 +74,20 @@ export default function NewProductPage() {
       <div>
         <Link
           href="/admin/products"
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-slate-900 mb-2 transition"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#687068] hover:text-[#182018] mb-2 transition"
         >
           <ArrowLeft size={16} />
           <span>Back to Products</span>
         </Link>
-        <h2 className="font-display text-2xl sm:text-3xl font-black text-[#090d16] tracking-tight">
+        <h2 className="font-display text-2xl sm:text-3xl font-black text-[#182018] tracking-tight">
           Add Dropship Item
         </h2>
-        <p className="text-slate-500 text-xs mt-0.5">
+        <p className="text-[#687068] text-xs mt-0.5">
           Configure retail prices, wholesale supplier costs, and automated margin calculations
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-white p-6 sm:p-8 rounded-3xl border border-[#eee9df] shadow-xs space-y-6">
+      <form onSubmit={handleSubmit} className="bg-white p-6 sm:p-8 rounded-3xl border border-[#dfe3dd] shadow-xs space-y-6">
         {error && (
           <div className="p-3.5 bg-rose-50 border border-rose-200 text-rose-800 text-xs font-semibold rounded-xl">
             {error}
@@ -96,12 +96,12 @@ export default function NewProductPage() {
 
         {/* Basic Details */}
         <div className="space-y-4">
-          <h3 className="font-display font-bold text-slate-900 text-sm border-b border-[#eee9df] pb-2">
+          <h3 className="font-display font-bold text-[#182018] text-sm border-b border-[#dfe3dd] pb-2">
             1. Item Details
           </h3>
 
           <div>
-            <label className="block text-xs font-bold text-slate-700 mb-1.5">Product Title *</label>
+            <label className="block text-xs font-bold text-[#182018] mb-1.5">Product Title *</label>
             <input
               type="text"
               name="name"
@@ -109,30 +109,30 @@ export default function NewProductPage() {
               onChange={handleChange}
               placeholder="e.g. Electric Garlic & Vegetable Mini Chopper"
               required
-              className="w-full text-xs sm:text-sm border border-[#e8e3d9] bg-[#faf8f5] rounded-xl px-3.5 py-3 focus:bg-white focus:border-amber-700 focus:outline-none transition font-medium"
+              className="w-full text-xs sm:text-sm border border-[#dfe3dd] bg-[#f5f6f1] text-[#182018] rounded-xl px-3.5 py-3 focus:bg-white focus:border-[#2f7a54] focus:outline-none transition font-medium"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-700 mb-1.5">Description</label>
+            <label className="block text-xs font-bold text-[#182018] mb-1.5">Description</label>
             <textarea
               name="description"
               value={formData.description}
               onChange={handleChange}
               rows={3}
               placeholder="Highlight problem-solving features, usage, and material benefits..."
-              className="w-full text-xs sm:text-sm border border-[#e8e3d9] bg-[#faf8f5] rounded-xl px-3.5 py-3 focus:bg-white focus:border-amber-700 focus:outline-none transition font-light"
+              className="w-full text-xs sm:text-sm border border-[#dfe3dd] bg-[#f5f6f1] text-[#182018] rounded-xl px-3.5 py-3 focus:bg-white focus:border-[#2f7a54] focus:outline-none transition font-light"
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">Category</label>
+              <label className="block text-xs font-bold text-[#182018] mb-1.5">Category</label>
               <select
                 name="categoryName"
                 value={formData.categoryName}
                 onChange={handleChange}
-                className="w-full text-xs sm:text-sm border border-[#e8e3d9] bg-[#faf8f5] rounded-xl px-3.5 py-3 focus:bg-white focus:border-amber-700 focus:outline-none transition"
+                className="w-full text-xs sm:text-sm border border-[#dfe3dd] bg-[#f5f6f1] text-[#182018] rounded-xl px-3.5 py-3 focus:bg-white focus:border-[#2f7a54] focus:outline-none transition"
               >
                 <option value="Kitchen & Home">Kitchen & Home</option>
                 <option value="Fashion & Ethnic">Fashion & Ethnic</option>
@@ -143,14 +143,14 @@ export default function NewProductPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">Image URL</label>
+              <label className="block text-xs font-bold text-[#182018] mb-1.5">Image URL</label>
               <input
                 type="url"
                 name="image"
                 value={formData.image}
                 onChange={handleChange}
                 placeholder="https://... (Unsplash or CDN link)"
-                className="w-full text-xs sm:text-sm border border-[#e8e3d9] bg-[#faf8f5] rounded-xl px-3.5 py-3 focus:bg-white focus:border-amber-700 focus:outline-none transition font-mono text-xs"
+                className="w-full text-xs sm:text-sm border border-[#dfe3dd] bg-[#f5f6f1] text-[#182018] rounded-xl px-3.5 py-3 focus:bg-white focus:border-[#2f7a54] focus:outline-none transition font-mono text-xs"
               />
             </div>
           </div>
@@ -158,13 +158,13 @@ export default function NewProductPage() {
 
         {/* Pricing & Margins */}
         <div className="space-y-4">
-          <h3 className="font-display font-bold text-slate-900 text-sm border-b border-[#eee9df] pb-2">
+          <h3 className="font-display font-bold text-[#182018] text-sm border-b border-[#dfe3dd] pb-2">
             2. Pricing & Markup Calculator
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">Retail Selling Price (₹) *</label>
+              <label className="block text-xs font-bold text-[#182018] mb-1.5">Retail Selling Price (₹) *</label>
               <input
                 type="number"
                 name="price"
@@ -172,52 +172,52 @@ export default function NewProductPage() {
                 onChange={handleChange}
                 placeholder="e.g. 899"
                 required
-                className="w-full text-xs sm:text-sm border border-[#e8e3d9] bg-[#faf8f5] rounded-xl px-3.5 py-3 focus:bg-white focus:border-amber-700 focus:outline-none transition font-black text-slate-900"
+                className="w-full text-xs sm:text-sm border border-[#dfe3dd] bg-[#f5f6f1] rounded-xl px-3.5 py-3 focus:bg-white focus:border-[#2f7a54] focus:outline-none transition font-black text-[#182018]"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">Supplier Cost Price (₹)</label>
+              <label className="block text-xs font-bold text-[#182018] mb-1.5">Supplier Cost Price (₹)</label>
               <input
                 type="number"
                 name="costPrice"
                 value={formData.costPrice}
                 onChange={handleChange}
                 placeholder="e.g. 290"
-                className="w-full text-xs sm:text-sm border border-[#e8e3d9] bg-[#faf8f5] rounded-xl px-3.5 py-3 focus:bg-white focus:border-amber-700 focus:outline-none transition font-mono"
+                className="w-full text-xs sm:text-sm border border-[#dfe3dd] bg-[#f5f6f1] text-[#182018] rounded-xl px-3.5 py-3 focus:bg-white focus:border-[#2f7a54] focus:outline-none transition font-mono"
               />
             </div>
           </div>
 
-          <div className="bg-emerald-50/60 border border-emerald-200/80 p-4 rounded-2xl flex items-center justify-between">
+          <div className="bg-[#baf2cd]/25 border border-[#baf2cd] p-4 rounded-2xl flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <Sparkles size={18} className="text-emerald-700" />
+              <Sparkles size={18} className="text-[#2f7a54]" />
               <div>
-                <span className="text-xs font-bold text-emerald-950 block">Live Profit Margin</span>
-                <span className="text-[11px] text-emerald-700 font-light">Calculated before freight</span>
+                <span className="text-xs font-bold text-[#183d2f] block">Live Profit Margin</span>
+                <span className="text-[11px] text-[#2f7a54] font-light">Calculated before freight</span>
               </div>
             </div>
             <div className="text-right">
-              <span className="text-xl font-black text-emerald-800">₹{grossMargin > 0 ? grossMargin : 0}</span>
-              <span className="text-[11px] font-bold text-emerald-700 block">({marginPercent}% profit spread)</span>
+              <span className="text-xl font-black text-[#2f7a54]">₹{grossMargin > 0 ? grossMargin : 0}</span>
+              <span className="text-[11px] font-bold text-[#183d2f] block">({marginPercent}% profit spread)</span>
             </div>
           </div>
         </div>
 
         {/* Sourcing Supplier */}
         <div className="space-y-4">
-          <h3 className="font-display font-bold text-slate-900 text-sm border-b border-[#eee9df] pb-2">
+          <h3 className="font-display font-bold text-[#183d2f] text-sm border-b border-[#dfe3dd] pb-2">
             3. Supplier Logistics
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">Supplier Source</label>
+              <label className="block text-xs font-bold text-[#182018] mb-1.5">Supplier Source</label>
               <select
                 name="supplierName"
                 value={formData.supplierName}
                 onChange={handleChange}
-                className="w-full text-xs sm:text-sm border border-[#e8e3d9] bg-[#faf8f5] rounded-xl px-3.5 py-3 focus:bg-white focus:border-amber-700 focus:outline-none transition"
+                className="w-full text-xs sm:text-sm border border-[#dfe3dd] bg-[#f5f6f1] text-[#182018] rounded-xl px-3.5 py-3 focus:bg-white focus:border-[#2f7a54] focus:outline-none transition"
               >
                 <option value="Roposo Clout">Roposo Clout</option>
                 <option value="GlowRoad">GlowRoad</option>
@@ -229,30 +229,30 @@ export default function NewProductPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">Supplier Product URL</label>
+              <label className="block text-xs font-bold text-[#182018] mb-1.5">Supplier Product URL</label>
               <input
                 type="url"
                 name="supplierUrl"
                 value={formData.supplierUrl}
                 onChange={handleChange}
                 placeholder="https://..."
-                className="w-full text-xs sm:text-sm border border-[#e8e3d9] bg-[#faf8f5] rounded-xl px-3.5 py-3 focus:bg-white focus:border-amber-700 focus:outline-none transition font-mono text-xs"
+                className="w-full text-xs sm:text-sm border border-[#dfe3dd] bg-[#f5f6f1] text-[#182018] rounded-xl px-3.5 py-3 focus:bg-white focus:border-[#2f7a54] focus:outline-none transition font-mono text-xs"
               />
             </div>
           </div>
         </div>
 
-        <div className="pt-4 border-t border-[#eee9df] flex items-center justify-end gap-3">
+        <div className="pt-4 border-t border-[#dfe3dd] flex items-center justify-end gap-3">
           <Link
             href="/admin/products"
-            className="text-xs font-bold text-slate-500 hover:text-slate-800 px-4 py-2.5"
+            className="text-xs font-bold text-[#687068] hover:text-[#182018] px-4 py-2.5"
           >
             Cancel
           </Link>
           <button
             type="submit"
             disabled={saving}
-            className="bg-[#090d16] hover:bg-slate-800 text-[#faf8f5] font-extrabold text-xs px-6 py-3.5 rounded-xl transition shadow-md flex items-center gap-1.5 cursor-pointer"
+            className="bg-[#183d2f] hover:bg-[#102c23] text-white font-extrabold text-xs px-6 py-3.5 rounded-xl transition shadow-md flex items-center gap-1.5 cursor-pointer"
           >
             <Plus size={16} />
             <span>{saving ? 'Publishing...' : 'Publish to Catalog'}</span>

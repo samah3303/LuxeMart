@@ -23,33 +23,33 @@ export default async function AdminOrdersPage() {
         <div>
           <Link
             href="/admin"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-slate-900 mb-1 transition"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#687068] hover:text-[#182018] mb-1 transition"
           >
             <ArrowLeft size={14} />
             <span>Back to Dashboard</span>
           </Link>
-          <h2 className="font-display text-xl sm:text-2xl font-black text-[#090d16] tracking-tight">
+          <h2 className="font-display text-xl sm:text-2xl font-black text-[#182018] tracking-tight">
             Order Fulfillment Queue
           </h2>
-          <p className="text-slate-500 text-xs mt-0.5">
+          <p className="text-[#687068] text-xs mt-0.5">
             {orders.length} total order{orders.length > 1 ? 's' : ''} logged in system
           </p>
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-2xs border border-[#eee9df] overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-xs border border-[#dfe3dd] overflow-hidden">
         {orders.length === 0 ? (
           <div className="p-10 text-center">
-            <div className="w-10 h-10 bg-[#faf8f5] text-slate-400 rounded-xl flex items-center justify-center mx-auto mb-2.5 border border-[#eee9df]">
+            <div className="w-10 h-10 bg-[#f5f6f1] text-[#687068] rounded-xl flex items-center justify-center mx-auto mb-2.5 border border-[#dfe3dd]">
               <ShoppingCart size={20} />
             </div>
-            <p className="font-bold text-slate-800 text-xs sm:text-sm">No orders in queue</p>
-            <p className="text-slate-500 text-[11px] mt-0.5">Customer purchases will be displayed here.</p>
+            <p className="font-bold text-[#182018] text-xs sm:text-sm">No orders in queue</p>
+            <p className="text-[#687068] text-[11px] mt-0.5">Customer purchases will be displayed here.</p>
           </div>
         ) : (
           <div>
             {/* Mobile Touch Cards View */}
-            <div className="sm:hidden divide-y divide-[#eee9df]">
+            <div className="sm:hidden divide-y divide-[#dfe3dd]">
               {orders.map((order) => {
                 const orderRef = `ORD-${order.id.slice(-6).toUpperCase()}`;
                 const isPrepaid = order.paymentMethod === 'UPI';
@@ -57,12 +57,12 @@ export default async function AdminOrdersPage() {
                 return (
                   <div key={order.id} className="p-3 space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="font-mono font-black text-xs text-[#090d16]">{orderRef}</span>
+                      <span className="font-mono font-black text-xs text-[#182018]">{orderRef}</span>
                       <span
                         className={`text-[9px] font-black px-2 py-0.5 rounded-full ${
                           isPrepaid
-                            ? 'bg-emerald-100 text-emerald-800'
-                            : 'bg-amber-100 text-amber-800'
+                            ? 'bg-[#baf2cd] text-[#183d2f] border border-[#2f7a54]/20'
+                            : 'bg-[#f5f6f1] text-[#182018] border border-[#dfe3dd]'
                         }`}
                       >
                         {isPrepaid ? 'UPI PAID' : 'COD'}
@@ -71,19 +71,20 @@ export default async function AdminOrdersPage() {
 
                     <div className="flex items-center justify-between text-xs">
                       <div>
-                        <p className="font-bold text-slate-900">{order.customerName}</p>
-                        <p className="text-slate-500 text-[10px]">{[order.city, order.district].filter(Boolean).join(', ') || 'Doorstep'} &bull; {order.customerPhone}</p>
+                        <p className="font-bold text-[#182018]">{order.customerName}</p>
+                        <p className="text-[#687068] text-[10px]">{[order.city, order.district].filter(Boolean).join(', ') || 'Doorstep'} &bull; {order.customerPhone}</p>
                       </div>
-                      <span className="font-black text-slate-900 text-xs sm:text-sm">₹{Number(order.total)}</span>
+                      <span className="font-black text-[#182018] text-xs sm:text-sm">₹{Number(order.total)}</span>
                     </div>
 
                     <div className="flex items-center justify-between pt-0.5">
-                      <span className="text-[9px] font-bold bg-[#faf8f5] text-slate-600 px-2 py-0.5 rounded border border-[#eee9df]">
-                        {order.fulfillmentStatus.replace(/_/g, ' ')}
+                      <span className="inline-flex items-center gap-1.5 text-[9px] font-bold bg-[#f5f6f1] text-[#182018] px-2 py-0.5 rounded border border-[#dfe3dd]">
+                        <span className={`w-1.5 h-1.5 rounded-full ${order.fulfillmentStatus === 'DELIVERED' ? 'bg-[#74dc98]' : order.fulfillmentStatus === 'CANCELLED' ? 'bg-[#9c4337]' : 'bg-[#d7a14b]'}`} />
+                        <span>{order.fulfillmentStatus.replace(/_/g, ' ')}</span>
                       </span>
                       <Link
                         href={`/admin/orders/${order.id}`}
-                        className="bg-[#090d16] text-[#faf8f5] font-bold text-[10px] px-2.5 py-1 rounded-md inline-flex items-center gap-1"
+                        className="bg-[#183d2f] hover:bg-[#102c23] text-white font-bold text-[10px] px-2.5 py-1 rounded-lg inline-flex items-center gap-1 transition"
                       >
                         <span>Fulfill</span>
                         <ArrowUpRight size={11} />
@@ -96,8 +97,8 @@ export default async function AdminOrdersPage() {
 
             {/* Desktop Table View */}
             <div className="hidden sm:block overflow-x-auto">
-              <table className="w-full text-left text-xs text-slate-600">
-                <thead className="bg-[#faf8f5] text-slate-700 font-bold uppercase tracking-wider text-[9px] border-b border-[#eee9df]">
+              <table className="w-full text-left text-xs text-[#687068]">
+                <thead className="bg-[#f5f6f1] text-[#182018] font-bold uppercase tracking-wider text-[9px] border-b border-[#dfe3dd]">
                   <tr>
                     <th className="px-3.5 py-2.5">Order ID</th>
                     <th className="px-3.5 py-2.5">Customer & Phone</th>
@@ -108,16 +109,16 @@ export default async function AdminOrdersPage() {
                     <th className="px-3.5 py-2.5 text-right">Action</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#eee9df]">
+                <tbody className="divide-y divide-[#dfe3dd]">
                   {orders.map((order) => {
                     const orderRef = `ORD-${order.id.slice(-6).toUpperCase()}`;
                     const isPrepaid = order.paymentMethod === 'UPI';
 
                     return (
-                      <tr key={order.id} className="hover:bg-[#faf8f5] transition">
+                      <tr key={order.id} className="hover:bg-[#f5f6f1]/60 transition">
                         <td className="px-3.5 py-2.5">
-                          <span className="font-mono font-black text-[#090d16] block">{orderRef}</span>
-                          <span className="text-[10px] text-slate-400">
+                          <span className="font-mono font-black text-[#182018] block">{orderRef}</span>
+                          <span className="text-[10px] text-[#687068]">
                             {new Date(order.createdAt).toLocaleDateString('en-IN', {
                               day: 'numeric',
                               month: 'short',
@@ -126,13 +127,13 @@ export default async function AdminOrdersPage() {
                         </td>
 
                         <td className="px-3.5 py-2.5">
-                          <span className="font-bold text-[#090d16] block">{order.customerName}</span>
-                          <span className="text-[10px] font-mono text-slate-500">{order.customerPhone}</span>
+                          <span className="font-bold text-[#182018] block">{order.customerName}</span>
+                          <span className="text-[10px] font-mono text-[#687068]">{order.customerPhone}</span>
                         </td>
 
                         <td className="px-3.5 py-2.5">
-                          <span className="font-bold text-slate-800 block">{order.city || order.district || 'Express'}</span>
-                          <span className="text-[10px] text-slate-400 truncate max-w-[150px] block">
+                          <span className="font-bold text-[#182018] block">{order.city || order.district || 'Express'}</span>
+                          <span className="text-[10px] text-[#687068] truncate max-w-[150px] block">
                             {order.houseName || order.city}
                           </span>
                         </td>
@@ -141,28 +142,29 @@ export default async function AdminOrdersPage() {
                           <span
                             className={`inline-block font-black text-[9px] px-2 py-0.5 rounded-full ${
                               isPrepaid
-                                ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
-                                : 'bg-amber-50 text-amber-800 border border-amber-200'
+                                ? 'bg-[#baf2cd] text-[#183d2f] border border-[#2f7a54]/30'
+                                : 'bg-[#f5f6f1] text-[#182018] border border-[#dfe3dd]'
                             }`}
                           >
                             {isPrepaid ? 'UPI PAID' : 'COD'}
                           </span>
                         </td>
 
-                        <td className="px-3.5 py-2.5 font-black text-[#090d16] text-xs">
+                        <td className="px-3.5 py-2.5 font-black text-[#182018] text-xs">
                           ₹{Number(order.total)}
                         </td>
 
                         <td className="px-3.5 py-2.5">
-                          <span className="inline-block font-bold text-[9px] bg-[#faf8f5] text-slate-700 px-2 py-0.5 rounded border border-[#eee9df]">
-                            {order.fulfillmentStatus.replace(/_/g, ' ')}
+                          <span className="inline-flex items-center gap-1.5 font-bold text-[9px] bg-[#f5f6f1] text-[#182018] px-2 py-0.5 rounded border border-[#dfe3dd]">
+                            <span className={`w-1.5 h-1.5 rounded-full ${order.fulfillmentStatus === 'DELIVERED' ? 'bg-[#74dc98]' : order.fulfillmentStatus === 'CANCELLED' ? 'bg-[#9c4337]' : 'bg-[#d7a14b]'}`} />
+                            <span>{order.fulfillmentStatus.replace(/_/g, ' ')}</span>
                           </span>
                         </td>
 
                         <td className="px-3.5 py-2.5 text-right">
                           <Link
                             href={`/admin/orders/${order.id}`}
-                            className="inline-flex items-center gap-1 bg-[#090d16] hover:bg-slate-800 text-[#faf8f5] font-bold px-2.5 py-1 rounded-md transition text-xs shadow-2xs"
+                            className="inline-flex items-center gap-1 bg-[#183d2f] hover:bg-[#102c23] text-white font-bold px-2.5 py-1 rounded-lg transition text-xs shadow-xs"
                           >
                             <span>Manage</span>
                             <ArrowUpRight size={11} />

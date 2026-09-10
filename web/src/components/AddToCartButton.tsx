@@ -41,18 +41,18 @@ export function AddToCartButton({ product, showBuyNow = false }: AddToCartButton
         onClick={handleAdd}
         className={`flex-1 min-h-[36px] py-2 px-3 rounded-lg font-bold text-xs tracking-wide flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
           added
-            ? 'bg-emerald-700 text-white'
-            : 'bg-[#090d16] hover:bg-slate-800 text-[#faf8f5] active:scale-[0.98]'
+            ? 'bg-[#2f7a54] text-white'
+            : 'bg-[#183d2f] hover:bg-[#102c23] text-[#f5f6f1] active:scale-[0.98]'
         }`}
       >
         {added ? (
           <>
-            <Check size={14} className="text-emerald-300" />
+            <Check size={14} className="text-[#baf2cd]" />
             <span>Added!</span>
           </>
         ) : (
           <>
-            <ShoppingBag size={14} className="text-amber-300" />
+            <ShoppingBag size={14} className="text-[#baf2cd]" />
             <span>Add to Cart</span>
           </>
         )}
@@ -61,9 +61,9 @@ export function AddToCartButton({ product, showBuyNow = false }: AddToCartButton
       {showBuyNow && (
         <button
           onClick={handleBuyNow}
-          className="flex-1 min-h-[36px] py-2 px-3 rounded-lg font-bold text-xs tracking-wide bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white flex items-center justify-center gap-1 transition-all shadow-xs active:scale-[0.98] cursor-pointer"
+          className="flex-1 min-h-[36px] py-2 px-3 rounded-lg font-bold text-xs tracking-wide bg-[#2f7a54] hover:bg-[#183d2f] text-white flex items-center justify-center gap-1 transition-all shadow-xs active:scale-[0.98] cursor-pointer"
         >
-          <Zap size={14} className="text-amber-200" />
+          <Zap size={14} className="text-[#baf2cd]" />
           <span>Buy Now &rarr;</span>
         </button>
       )}

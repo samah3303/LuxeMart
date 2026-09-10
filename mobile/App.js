@@ -104,7 +104,7 @@ function CartIcon() {
 
   return (
     <TouchableOpacity onPress={() => navigation.navigate('Cart')} style={{ padding: 5 }}>
-      <Ionicons name="cart-outline" size={26} color="#0f172a" />
+      <Ionicons name="cart-outline" size={24} color="#ffffff" />
       {cartCount > 0 && (
         <View style={styles.badge}>
           <Text style={styles.badgeText}>{cartCount}</Text>
@@ -257,7 +257,7 @@ function CheckoutScreen({ navigation }) {
   const [name, setName] = React.useState('');
   const [phone, setPhone] = React.useState('');
   const [house, setHouse] = React.useState('');
-  const [district, setDistrict] = React.useState('Ernakulam');
+  const [district, setDistrict] = React.useState('');
   const [pincode, setPincode] = React.useState('');
   const [paymentMethod, setPaymentMethod] = React.useState('UPI');
 
@@ -271,7 +271,7 @@ function CheckoutScreen({ navigation }) {
 
     Alert.alert(
       'Order Confirmed! 🎉',
-      `Thank you ${name}! Your order has been placed via ${paymentMethod}.\nWe will dispatch it to ${house}, ${district}.`,
+      `Thank you ${name}! Your order has been placed via ${paymentMethod}.\nWe will dispatch it to ${house}, ${district || 'your address'}.`,
       [
         {
           text: 'OK',
@@ -293,6 +293,7 @@ function CheckoutScreen({ navigation }) {
         <TextInput
           style={styles.input}
           placeholder="Recipient's Name"
+          placeholderTextColor="#94a3b8"
           value={name}
           onChangeText={setName}
         />
@@ -301,6 +302,7 @@ function CheckoutScreen({ navigation }) {
         <TextInput
           style={styles.input}
           placeholder="10-digit mobile"
+          placeholderTextColor="#94a3b8"
           keyboardType="phone-pad"
           value={phone}
           onChangeText={setPhone}
@@ -311,6 +313,7 @@ function CheckoutScreen({ navigation }) {
         <TextInput
           style={styles.input}
           placeholder="Apartment, suite, or house name"
+          placeholderTextColor="#94a3b8"
           value={house}
           onChangeText={setHouse}
         />
@@ -319,6 +322,7 @@ function CheckoutScreen({ navigation }) {
         <TextInput
           style={styles.input}
           placeholder="e.g. Metro City"
+          placeholderTextColor="#94a3b8"
           value={district}
           onChangeText={setDistrict}
         />
@@ -327,6 +331,7 @@ function CheckoutScreen({ navigation }) {
         <TextInput
           style={styles.input}
           placeholder="6-digit PIN"
+          placeholderTextColor="#94a3b8"
           keyboardType="numeric"
           value={pincode}
           onChangeText={setPincode}
@@ -344,7 +349,7 @@ function CheckoutScreen({ navigation }) {
           <Ionicons
             name={paymentMethod === 'UPI' ? 'radio-button-on' : 'radio-button-off'}
             size={20}
-            color="#059669"
+            color="#2f7a54"
           />
           <View style={{ marginLeft: 10, flex: 1 }}>
             <Text style={styles.payOptionTitle}>UPI / Online Payment (Flat ₹70 OFF)</Text>
@@ -359,7 +364,7 @@ function CheckoutScreen({ navigation }) {
           <Ionicons
             name={paymentMethod === 'COD' ? 'radio-button-on' : 'radio-button-off'}
             size={20}
-            color="#4f46e5"
+            color="#183d2f"
           />
           <View style={{ marginLeft: 10, flex: 1 }}>
             <Text style={styles.payOptionTitle}>Cash on Delivery (COD)</Text>
@@ -367,8 +372,8 @@ function CheckoutScreen({ navigation }) {
           </View>
         </TouchableOpacity>
 
-        <View style={{ marginTop: 16, borderTopWidth: 1, borderColor: '#e2e8f0', paddingTop: 12 }}>
-          <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#0f172a' }}>
+        <View style={{ marginTop: 16, borderTopWidth: 1, borderColor: '#dfe3dd', paddingTop: 12 }}>
+          <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#182018' }}>
             Total Payable: ₹{finalAmount}
           </Text>
         </View>
@@ -390,10 +395,10 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
-            headerStyle: { backgroundColor: '#ffffff' },
-            headerTintColor: '#0f172a',
+            headerStyle: { backgroundColor: '#102c23' },
+            headerTintColor: '#ffffff',
             headerTitleStyle: { fontWeight: '900' },
-            contentStyle: { backgroundColor: '#f8fafc' },
+            contentStyle: { backgroundColor: '#f5f6f1' },
           }}
         >
           <Stack.Screen
@@ -411,7 +416,7 @@ export default function App() {
             options={{ title: 'Express Checkout' }}
           />
         </Stack.Navigator>
-        <StatusBar style="dark" />
+        <StatusBar style="light" />
       </NavigationContainer>
     </CartProvider>
   );
@@ -421,33 +426,43 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    backgroundColor: '#f5f6f1',
   },
   list: {
     padding: 16,
   },
   promoBanner: {
-    backgroundColor: '#059669',
-    paddingVertical: 8,
+    backgroundColor: '#183d2f',
+    paddingVertical: 9,
     alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#2f7a54',
   },
   promoText: {
-    color: '#ffffff',
+    color: '#baf2cd',
     fontSize: 11,
     fontWeight: 'bold',
+    letterSpacing: 0.5,
   },
   card: {
     backgroundColor: '#ffffff',
-    borderRadius: 16,
+    borderRadius: 18,
     marginBottom: 16,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: '#e2e8f0',
+    borderColor: '#dfe3dd',
     padding: 14,
+    shadowColor: '#1f3127',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.06,
+    shadowRadius: 16,
+    elevation: 2,
   },
   image: {
     width: '100%',
     height: 180,
-    borderRadius: 12,
+    borderRadius: 14,
+    backgroundColor: '#f5f6f1',
   },
   info: {
     marginTop: 10,
@@ -455,13 +470,14 @@ const styles = StyleSheet.create({
   categoryBadge: {
     fontSize: 10,
     fontWeight: 'bold',
-    color: '#059669',
+    color: '#2f7a54',
     textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
   name: {
     fontSize: 15,
     fontWeight: 'bold',
-    color: '#0f172a',
+    color: '#182018',
     marginTop: 4,
   },
   priceRow: {
@@ -473,21 +489,22 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 18,
     fontWeight: '900',
-    color: '#0f172a',
+    color: '#182018',
   },
   deliveryBadge: {
     fontSize: 10,
     fontWeight: 'bold',
-    color: '#4f46e5',
-    backgroundColor: '#eef2ff',
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    borderRadius: 4,
+    color: '#183d2f',
+    backgroundColor: '#baf2cd',
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 6,
+    overflow: 'hidden',
   },
   button: {
-    backgroundColor: '#4f46e5',
-    paddingVertical: 10,
-    borderRadius: 10,
+    backgroundColor: '#183d2f',
+    paddingVertical: 11,
+    borderRadius: 12,
     alignItems: 'center',
   },
   buttonText: {
@@ -499,16 +516,18 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: -2,
     right: -2,
-    backgroundColor: '#059669',
+    backgroundColor: '#baf2cd',
     borderRadius: 10,
     minWidth: 18,
     height: 18,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 2,
+    borderWidth: 1,
+    borderColor: '#102c23',
   },
   badgeText: {
-    color: '#fff',
+    color: '#102c23',
     fontSize: 10,
     fontWeight: 'bold',
   },
@@ -517,47 +536,49 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
+    backgroundColor: '#f5f6f1',
   },
   emptyText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#64748b',
+    color: '#687068',
     marginTop: 16,
     marginBottom: 16,
   },
   linkButton: {
-    backgroundColor: '#4f46e5',
+    backgroundColor: '#183d2f',
     paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 10,
+    paddingVertical: 11,
+    borderRadius: 12,
   },
   linkText: {
-    color: '#fff',
+    color: '#ffffff',
     fontWeight: 'bold',
   },
   cartItem: {
     flexDirection: 'row',
     backgroundColor: '#ffffff',
-    borderRadius: 14,
+    borderRadius: 16,
     padding: 12,
     marginBottom: 12,
     borderWidth: 1,
-    borderColor: '#e2e8f0',
+    borderColor: '#dfe3dd',
   },
   cartImage: {
     width: 70,
     height: 70,
-    borderRadius: 10,
+    borderRadius: 12,
+    backgroundColor: '#f5f6f1',
   },
   cartName: {
     fontSize: 13,
     fontWeight: 'bold',
-    color: '#0f172a',
+    color: '#182018',
   },
   cartPrice: {
     fontSize: 14,
     fontWeight: '900',
-    color: '#059669',
+    color: '#2f7a54',
     marginTop: 2,
   },
   quantityContainer: {
@@ -567,25 +588,27 @@ const styles = StyleSheet.create({
   },
   qtyButton: {
     borderWidth: 1,
-    borderColor: '#cbd5e1',
-    borderRadius: 6,
-    width: 26,
-    height: 26,
+    borderColor: '#dfe3dd',
+    borderRadius: 8,
+    width: 28,
+    height: 28,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#f5f6f1',
   },
   qtyText: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#334155',
+    color: '#182018',
   },
   qtyValue: {
     marginHorizontal: 12,
     fontWeight: 'bold',
     fontSize: 13,
+    color: '#182018',
   },
   removeText: {
-    color: '#ef4444',
+    color: '#ff745e',
     fontSize: 12,
     fontWeight: 'bold',
   },
@@ -593,7 +616,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     padding: 16,
     borderTopWidth: 1,
-    borderColor: '#e2e8f0',
+    borderColor: '#dfe3dd',
   },
   totalRow: {
     flexDirection: 'row',
@@ -602,82 +625,84 @@ const styles = StyleSheet.create({
   },
   totalLabel: {
     fontSize: 14,
-    color: '#64748b',
+    color: '#687068',
   },
   totalValue: {
     fontSize: 15,
     fontWeight: 'bold',
-    color: '#0f172a',
+    color: '#182018',
   },
   subText: {
     fontSize: 12,
-    color: '#059669',
+    color: '#2f7a54',
   },
   discountText: {
     fontSize: 12,
     fontWeight: 'bold',
-    color: '#059669',
+    color: '#2f7a54',
   },
   finalTotalValue: {
     fontSize: 18,
     fontWeight: '900',
-    color: '#4f46e5',
+    color: '#182018',
   },
   checkoutButton: {
-    backgroundColor: '#4f46e5',
+    backgroundColor: '#183d2f',
     paddingVertical: 14,
-    borderRadius: 12,
+    borderRadius: 14,
     alignItems: 'center',
     marginTop: 10,
   },
   checkoutButtonText: {
-    color: '#fff',
+    color: '#ffffff',
     fontWeight: 'bold',
     fontSize: 15,
   },
   headerTitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#0f172a',
+    color: '#182018',
     marginBottom: 12,
   },
   label: {
     fontSize: 12,
     fontWeight: 'bold',
-    color: '#475569',
+    color: '#182018',
     marginTop: 10,
     marginBottom: 4,
   },
   input: {
     borderWidth: 1,
-    borderColor: '#cbd5e1',
+    borderColor: '#dfe3dd',
     borderRadius: 10,
     paddingHorizontal: 12,
     paddingVertical: 8,
     fontSize: 13,
-    backgroundColor: '#f8fafc',
+    backgroundColor: '#f5f6f1',
+    color: '#182018',
   },
   payOption: {
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#cbd5e1',
+    borderColor: '#dfe3dd',
     borderRadius: 12,
     padding: 12,
     marginBottom: 10,
+    backgroundColor: '#ffffff',
   },
   payOptionActive: {
-    borderColor: '#059669',
-    backgroundColor: '#ecfdf5',
+    borderColor: '#2f7a54',
+    backgroundColor: 'rgba(186, 242, 205, 0.25)',
   },
   payOptionTitle: {
     fontSize: 13,
     fontWeight: 'bold',
-    color: '#0f172a',
+    color: '#182018',
   },
   payOptionSubtitle: {
     fontSize: 11,
-    color: '#64748b',
+    color: '#687068',
     marginTop: 2,
   },
 });

@@ -45,29 +45,29 @@ Mobile: ${order.customerPhone}`;
       <div className="flex items-center justify-between">
         <Link
           href="/admin/orders"
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-slate-900 transition"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#687068] hover:text-[#182018] transition"
         >
           <ArrowLeft size={16} />
           <span>Back to Orders Queue</span>
         </Link>
-        <span className="font-mono text-xs text-slate-400">ID: {order.id}</span>
+        <span className="font-mono text-xs text-[#687068]">ID: {order.id}</span>
       </div>
 
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-6 rounded-3xl border border-[#eee9df] shadow-xs">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-6 rounded-3xl border border-[#dfe3dd] shadow-xs">
         <div>
           <div className="flex items-center gap-2.5">
-            <h2 className="font-display text-2xl sm:text-3xl font-black text-[#090d16]">{orderRef}</h2>
+            <h2 className="font-display text-2xl sm:text-3xl font-black text-[#182018]">{orderRef}</h2>
             <span
               className={`text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full ${
                 order.paymentMethod === 'UPI'
-                  ? 'bg-emerald-100 text-emerald-800'
-                  : 'bg-amber-100 text-amber-800'
+                  ? 'bg-[#baf2cd] text-[#183d2f] border border-[#2f7a54]/30'
+                  : 'bg-[#f5f6f1] text-[#182018] border border-[#dfe3dd]'
               }`}
             >
               {order.paymentMethod === 'UPI' ? 'Prepaid UPI' : 'COD'}
             </span>
           </div>
-          <p className="text-xs text-slate-500 mt-1 font-light">
+          <p className="text-xs text-[#687068] mt-1 font-light">
             Placed on {new Date(order.createdAt).toLocaleString('en-IN', { dateStyle: 'long', timeStyle: 'short' })}
           </p>
         </div>
@@ -78,7 +78,7 @@ Mobile: ${order.customerPhone}`;
           )},%20this%20is%20Goodfinds%20regarding%20your%20order%20${orderRef}.`}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full sm:w-auto bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs px-4 py-2.5 rounded-xl flex items-center justify-center gap-1.5 transition shadow-xs"
+          className="w-full sm:w-auto bg-[#183d2f] hover:bg-[#102c23] text-[#baf2cd] font-bold text-xs px-4 py-2.5 rounded-xl flex items-center justify-center gap-1.5 transition shadow-xs"
         >
           <MessageCircle size={16} />
           <span>WhatsApp Customer</span>
@@ -87,22 +87,22 @@ Mobile: ${order.customerPhone}`;
 
       {/* Dropship Profit Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-white p-5 rounded-3xl border border-[#eee9df] shadow-xs">
-          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Customer Paid</span>
-          <p className="text-2xl font-black text-[#090d16] mt-1">₹{customerTotal}</p>
-          <span className="text-xs text-slate-500 mt-0.5 block">{order.items.length} item(s) ordered</span>
+        <div className="bg-white p-5 rounded-3xl border border-[#dfe3dd] shadow-xs">
+          <span className="text-[10px] font-bold text-[#687068] uppercase tracking-wider block">Customer Paid</span>
+          <p className="text-2xl font-black text-[#182018] mt-1">₹{customerTotal}</p>
+          <span className="text-xs text-[#687068] mt-0.5 block">{order.items.length} item(s) ordered</span>
         </div>
 
-        <div className="bg-white p-5 rounded-3xl border border-[#eee9df] shadow-xs">
-          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Wholesale Cost</span>
-          <p className="text-2xl font-black text-slate-600 mt-1">₹{orderSupplierCost}</p>
-          <span className="text-xs text-slate-400 mt-0.5 block">Supplier base price</span>
+        <div className="bg-white p-5 rounded-3xl border border-[#dfe3dd] shadow-xs">
+          <span className="text-[10px] font-bold text-[#687068] uppercase tracking-wider block">Wholesale Cost</span>
+          <p className="text-2xl font-black text-[#687068] mt-1">₹{orderSupplierCost}</p>
+          <span className="text-xs text-[#687068] mt-0.5 block">Supplier base price</span>
         </div>
 
-        <div className="bg-emerald-50/70 p-5 rounded-3xl border border-emerald-200 shadow-xs">
-          <span className="text-[10px] font-bold text-emerald-800 uppercase tracking-wider block">Gross Margin</span>
-          <p className="text-2xl font-black text-emerald-800 mt-1">₹{netEstimatedMargin}</p>
-          <span className="text-xs text-emerald-800 mt-0.5 block font-semibold">
+        <div className="bg-[#baf2cd]/20 p-5 rounded-3xl border border-[#baf2cd] shadow-xs">
+          <span className="text-[10px] font-bold text-[#183d2f] uppercase tracking-wider block">Gross Margin</span>
+          <p className="text-2xl font-black text-[#2f7a54] mt-1">₹{netEstimatedMargin}</p>
+          <span className="text-xs text-[#183d2f] mt-0.5 block font-semibold">
             {customerTotal > 0 ? `${Math.round((netEstimatedMargin / customerTotal) * 100)}% estimated markup` : ''}
           </span>
         </div>
@@ -122,20 +122,20 @@ Mobile: ${order.customerPhone}`;
       />
 
       {/* Items to Fulfill */}
-      <div className="bg-white p-6 rounded-3xl border border-[#eee9df] shadow-xs space-y-4">
-        <h3 className="font-display font-bold text-base text-[#090d16]">Ordered Products</h3>
-        <div className="divide-y divide-[#eee9df]">
+      <div className="bg-white p-6 rounded-3xl border border-[#dfe3dd] shadow-xs space-y-4">
+        <h3 className="font-display font-bold text-base text-[#182018]">Ordered Products</h3>
+        <div className="divide-y divide-[#dfe3dd]">
           {order.items.map((item) => (
             <div key={item.id} className="py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex items-center gap-4">
                 <img
                   src={item.product.image}
                   alt={item.product.name}
-                  className="w-16 h-16 rounded-2xl object-cover border border-[#eee9df] flex-shrink-0"
+                  className="w-16 h-16 rounded-2xl object-cover border border-[#dfe3dd] flex-shrink-0"
                 />
                 <div>
-                  <h4 className="font-bold text-slate-900 text-sm">{item.product.name}</h4>
-                  <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500 mt-1">
+                  <h4 className="font-bold text-[#182018] text-sm">{item.product.name}</h4>
+                  <div className="flex flex-wrap items-center gap-2 text-xs text-[#687068] mt-1">
                     <span>Qty: <strong>{item.quantity}</strong></span>
                     <span>&bull;</span>
                     <span>Retail: <strong>₹{Number(item.price)}</strong></span>
@@ -143,7 +143,7 @@ Mobile: ${order.customerPhone}`;
                     <span>Wholesale: <strong>₹{Number(item.product.costPrice)}</strong></span>
                   </div>
                   <div className="mt-1.5 flex items-center gap-2 text-xs">
-                    <span className="bg-[#faf8f5] text-slate-700 px-2 py-0.5 rounded font-semibold text-[10px] border border-[#eee9df]">
+                    <span className="bg-[#f5f6f1] text-[#182018] px-2 py-0.5 rounded font-semibold text-[10px] border border-[#dfe3dd]">
                       Supplier: {item.product.supplierName}
                     </span>
                     {item.product.supplierUrl && (
@@ -151,7 +151,7 @@ Mobile: ${order.customerPhone}`;
                         href={item.product.supplierUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-amber-800 hover:underline flex items-center gap-1 text-[11px] font-bold"
+                        className="text-[#183d2f] hover:underline flex items-center gap-1 text-[11px] font-bold"
                       >
                         <span>Supplier Portal</span>
                         <ExternalLink size={12} />
@@ -162,8 +162,8 @@ Mobile: ${order.customerPhone}`;
               </div>
 
               <div className="text-right sm:pl-4">
-                <span className="text-xs text-slate-400 block">Line Total</span>
-                <span className="font-black text-slate-900 text-base">
+                <span className="text-xs text-[#687068] block">Line Total</span>
+                <span className="font-black text-[#182018] text-base">
                   ₹{Number(item.price) * item.quantity}
                 </span>
               </div>
@@ -173,12 +173,12 @@ Mobile: ${order.customerPhone}`;
       </div>
 
       {/* Customer Delivery Address */}
-      <div className="bg-white p-6 rounded-3xl border border-[#eee9df] shadow-xs space-y-3">
-        <h3 className="font-display font-bold text-base text-[#090d16] flex items-center gap-2">
-          <MapPin size={18} className="text-emerald-700" />
+      <div className="bg-white p-6 rounded-3xl border border-[#dfe3dd] shadow-xs space-y-3">
+        <h3 className="font-display font-bold text-base text-[#182018] flex items-center gap-2">
+          <MapPin size={18} className="text-[#2f7a54]" />
           <span>Customer Address</span>
         </h3>
-        <div className="bg-[#faf8f5] p-4 rounded-2xl text-xs text-slate-700 font-mono leading-relaxed whitespace-pre-line border border-[#e8e3d9]">
+        <div className="bg-[#f5f6f1] p-4 rounded-2xl text-xs text-[#182018] font-mono leading-relaxed whitespace-pre-line border border-[#dfe3dd]">
           {addressText}
         </div>
       </div>
