@@ -22,8 +22,8 @@ export function MobileBottomBar() {
   ];
 
   return (
-    <div className="md:hidden fixed bottom-3 left-4 right-4 z-50">
-      <div className="glass-dock rounded-2xl p-1.5 shadow-2xl flex items-center justify-around">
+    <div className="md:hidden fixed bottom-2 left-3 right-3 z-50">
+      <div className="glass-dock rounded-xl p-1 shadow-xl flex items-center justify-around">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = pathname === item.href;
@@ -32,21 +32,21 @@ export function MobileBottomBar() {
             <Link
               key={item.href}
               href={item.href}
-              className={`relative flex flex-col items-center py-1.5 px-3 rounded-xl transition-all ${
+              className={`relative flex flex-col items-center py-1 px-2.5 rounded-lg transition-all ${
                 isActive
                   ? 'text-amber-400 bg-white/10'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
               <div className="relative">
-                <Icon size={20} />
+                <Icon size={18} />
                 {item.badge !== undefined && item.badge > 0 && (
-                  <span className="absolute -top-1.5 -right-2.5 bg-emerald-500 text-slate-950 text-[10px] font-black rounded-full min-w-4 h-4 px-1 flex items-center justify-center animate-pulse">
+                  <span className="absolute -top-1.5 -right-2 bg-emerald-500 text-slate-950 text-[9px] font-black rounded-full min-w-3.5 h-3.5 px-0.5 flex items-center justify-center animate-pulse">
                     {item.badge}
                   </span>
                 )}
               </div>
-              <span className="text-[10px] font-bold tracking-tight mt-1">{item.label}</span>
+              <span className="text-[9px] font-bold tracking-tight mt-0.5">{item.label}</span>
             </Link>
           );
         })}
@@ -56,10 +56,10 @@ export function MobileBottomBar() {
           href="https://wa.me/919999999999?text=Hi%20Goodfinds,%20I%20have%20an%20inquiry%20regarding%20products."
           target="_blank"
           rel="noopener noreferrer"
-          className="flex flex-col items-center py-1.5 px-3 text-emerald-400 hover:text-emerald-300 transition-all"
+          className="flex flex-col items-center py-1 px-2.5 text-emerald-400 hover:text-emerald-300 transition-all"
         >
-          <MessageCircle size={20} />
-          <span className="text-[10px] font-bold tracking-tight mt-1">Support</span>
+          <MessageCircle size={18} />
+          <span className="text-[9px] font-bold tracking-tight mt-0.5">Support</span>
         </a>
       </div>
     </div>

@@ -36,10 +36,10 @@ export function AddToCartButton({ product, showBuyNow = false }: AddToCartButton
   };
 
   return (
-    <div className="flex flex-col sm:flex-row items-stretch gap-2.5 w-full">
+    <div className="flex flex-col sm:flex-row items-stretch gap-2 w-full">
       <button
         onClick={handleAdd}
-        className={`flex-1 min-h-[44px] py-2.5 px-4 rounded-xl font-bold text-xs tracking-wide flex items-center justify-center gap-2 transition-all cursor-pointer ${
+        className={`flex-1 min-h-[36px] py-2 px-3 rounded-lg font-bold text-xs tracking-wide flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
           added
             ? 'bg-emerald-700 text-white'
             : 'bg-[#090d16] hover:bg-slate-800 text-[#faf8f5] active:scale-[0.98]'
@@ -47,12 +47,12 @@ export function AddToCartButton({ product, showBuyNow = false }: AddToCartButton
       >
         {added ? (
           <>
-            <Check size={16} className="text-emerald-300" />
-            <span>Added to Cart!</span>
+            <Check size={14} className="text-emerald-300" />
+            <span>Added!</span>
           </>
         ) : (
           <>
-            <ShoppingBag size={16} className="text-amber-300" />
+            <ShoppingBag size={14} className="text-amber-300" />
             <span>Add to Cart</span>
           </>
         )}
@@ -61,9 +61,9 @@ export function AddToCartButton({ product, showBuyNow = false }: AddToCartButton
       {showBuyNow && (
         <button
           onClick={handleBuyNow}
-          className="flex-1 min-h-[44px] py-2.5 px-4 rounded-xl font-bold text-xs tracking-wide bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white flex items-center justify-center gap-1.5 transition-all shadow-sm active:scale-[0.98] cursor-pointer"
+          className="flex-1 min-h-[36px] py-2 px-3 rounded-lg font-bold text-xs tracking-wide bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white flex items-center justify-center gap-1 transition-all shadow-xs active:scale-[0.98] cursor-pointer"
         >
-          <Zap size={16} className="text-amber-200" />
+          <Zap size={14} className="text-amber-200" />
           <span>Buy Now &rarr;</span>
         </button>
       )}
