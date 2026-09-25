@@ -25,6 +25,23 @@ export async function getProducts() {
   }
 }
 
+export async function getCategories() {
+  try {
+    const categories = await prisma.category.findMany({
+      include: {
+        _count: {
+          select: { products: true },
+        },
+      },
+      orderBy: { name: 'asc' },
+    });
+    return { success: true, categories };
+  } catch (error: any) {
+    console.error('Failed to get categories:', error);
+    return { success: false, categories: [] };
+  }
+}
+
 export async function getProductById(id: string) {
   try {
     const product = await prisma.product.findUnique({
